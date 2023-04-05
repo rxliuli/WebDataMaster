@@ -1,6 +1,6 @@
 {
   "name": "WebDataMaster",
-  "version": "0.5.1",
+  "version": "0.1.0",
   "description": "Export and import web site data",
   "manifest_version": 3,
   "background": {
@@ -12,7 +12,7 @@
       "js": ["content-scripts/main.ts"]
     }
   ],
-  "permissions": ["contextMenus", "storage"],
+  "permissions": ["contextMenus"],
   "icons": {
     "16": "assets/16.png",
     "32": "assets/32.png",
