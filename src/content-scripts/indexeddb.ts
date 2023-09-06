@@ -1,30 +1,45 @@
-import { exportToJsonString, importFromJsonString } from 'indexeddb-export-import'
+import {
+  exportToJsonString,
+  importFromJsonString,
+} from 'indexeddb-export-import'
 import { Base } from './base'
 import { AsyncArray } from '@liuli-util/async'
 import JSZip from 'jszip'
 import { openDB, unwrap } from 'idb'
 
-export async function exportIndexDBByInfo(info: IDBDatabaseInfo): Promise<string> {
+export async function exportIndexDBByInfo(
+  info: IDBDatabaseInfo,
+): Promise<string> {
   return new Promise(async (resolve, reject) => {
-    exportToJsonString(unwrap(await openDB(info.name!, info.version)), (err, jsonString) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(jsonString)
-      }
-    })
+    exportToJsonString(
+      unwrap(await openDB(info.name!, info.version)),
+      (err, jsonString) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(jsonString)
+        }
+      },
+    )
   })
 }
 
-export async function importIndexDBByInfo(info: IDBDatabaseInfo, json: string): Promise<void> {
+export async function importIndexDBByInfo(
+  info: IDBDatabaseInfo,
+  json: string,
+): Promise<void> {
   return new Promise(async (resolve, reject) => {
-    importFromJsonString(unwrap(await openDB(info.name!, info.version)), json, (err) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve()
-      }
-    })
+    importFromJsonString(
+      unwrap(await openDB(info.name!, info.version)),
+      json,
+      (err) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve()
+        }
+      },
+    )
   })
 }
 

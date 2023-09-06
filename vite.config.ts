@@ -1,20 +1,37 @@
-import { defineConfig, Plugin } from 'vite'
-import path from 'node:path'
-import { chromeExtension } from 'vite-plugin-chrome-extension'
-import { firefoxOutput } from '@liuli-util/vite-plugin-chrome-extension-dist-firefox'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { crx } from '@crxjs/vite-plugin'
+import { firefox } from '@liuli-util/vite-plugin-firefox-dist'
+import manifest from './manifest.json'
+import { i18nextDtsGen } from '@liuli-util/rollup-plugin-i18next-dts-gen'
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-  },
+  plugins: [
+    react(),
+    // @ts-expect-error
+    crx({ manifest }),
+    firefox({
+      browser_specific_settings: {
+        gecko: {
+          id: 'clean-twttier@rxliuli.com',
+          strict_min_version: '109.0',
+        },
+      },
+    }),
+    i18nextDtsGen({
+      dirs: ['src/i18n'],
+    }),
+  ] as any,
+  base: './',
   build: {
-    rollupOptions: {
-      input: 'src/manifest.json',
-    },
+    target: 'esnext',
     minify: false,
-    assetsInlineLimit: 10096,
   },
-  plugins: [chromeExtension(), firefoxOutput()] as any,
+  css: {
+    postcss: {
+      plugins: [tailwindcss, autoprefixer] as any,
+    },
+  },
 })
