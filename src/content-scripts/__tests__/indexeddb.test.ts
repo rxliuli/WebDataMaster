@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto'
 import { expect, it } from 'vitest'
 import { DBSchema, openDB } from 'idb'
-import { exportIndexDBByInfo, importIndexDBByInfo } from '../indexeddb'
+import { exportIndexDBByInfo } from '../indexeddb'
 
 it('import and export', async () => {
   interface AllSchema extends DBSchema {

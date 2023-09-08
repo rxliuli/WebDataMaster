@@ -22,3 +22,19 @@ Browser.contextMenus.onClicked.addListener(function (info, tab) {
   }
   Browser.tabs.sendMessage(tab.id, { action: info.menuItemId })
 })
+
+// 监听来自 popup 的消息
+Browser.runtime.onMessage.addListener(async function (
+  message,
+  sender,
+  _sendResponse,
+) {
+  console.log('message', message, 'sender', sender)
+  // 通过 sendResponse 返回消息
+  const tab = (
+    await Browser.tabs.query({ active: true, currentWindow: true })
+  )[0]
+  if (tab && tab.id) {
+    await Browser.tabs.sendMessage(tab.id, { action: message.action })
+  }
+})

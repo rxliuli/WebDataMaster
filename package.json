@@ -32,17 +32,20 @@
     "@ffflorian/jszip-cli": "^3.4.1",
     "@liuli-util/rollup-plugin-i18next-dts-gen": "^0.4.4",
     "@liuli-util/vite-plugin-firefox-dist": "^0.2.1",
+    "@types/file-saver": "^2.0.5",
     "@types/lodash-es": "^4.17.7",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@types/webextension-polyfill": "^0.10.1",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
+    "fake-indexeddb": "^4.0.2",
     "postcss": "^8.4.24",
     "rimraf": "^5.0.0",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
+    "vitest": "^0.34.3",
     "web-ext": "^7.6.2"
   }
 }

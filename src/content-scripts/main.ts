@@ -6,7 +6,12 @@ import idb from './indexeddb'
 import { cookie } from './cookie'
 import { storage } from './storage'
 
-const list = [idb(), cookie(), storage('localStorage', localStorage), storage('sessionStorage', sessionStorage)]
+const list = [
+  idb(),
+  cookie(),
+  storage('localStorage', localStorage),
+  storage('sessionStorage', sessionStorage),
+]
 
 async function exportData() {
   const zip = new JSZip()
